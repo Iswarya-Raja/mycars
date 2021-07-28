@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+#add-employee-form {
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+  width:700px;
+  margin-left:auto;
+  margin-right: auto;
+  border-radius: 6px;
+  magin-bottom: 15px;
+  padding: 24px 25px;
+  box-shadow: 0 0 8px skyblue;
+}
+
+#add-employee-form h1 {
+  margin: 0;
+  font-size: 24px;
+  margin-left: 30%;
+  color:rgba(0,0,0,0.8);
+}
+#add-employee-form h3 {
+  font-size:18px;
+  color:rgba(0,0,0,0.8);
+  margin-left:20%;
+}
+.input-field {
+  width:55%;
+  font-size:19px;
+  margin-left:20%;
+  border:none;
+  border-bottom:2px solid grey;
+  background-color:rgba(0,0,0,0.1)
+
+}
+.profile-field {
+   width:55%;
+  font-size:19px;
+  margin-left:20%;
+  border:none;
+}
+#hr-line {
+  border:1px solid skyblue;
+  margin:30px 20px;
+
+}
+.btn-field {
+  font-size:20px;
+}
+#btn {
+  margin:30px;
+  padding-left:30%; */
+  display:flex;
+  flex-directions:row;
+  align-items:center;
+}
