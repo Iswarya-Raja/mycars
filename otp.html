@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="./styles/otp.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjp6heWby8AqTEojE8-07S5C0iJMhB35fBvw&usqp=CAU" type="text/ico" rel="icon"/>
+<style>
+body
+{
+background-image:url("https://static.vecteezy.com/system/resources/previews/000/588/967/non_2x/abstract-geometric-style-smooth-background-blur-background-with-glass-vector-illustration.jpg");
+background-repeat: no-repeat;
+background-size:100% auto;
+}
+form{
+margin-top:100px;
+}
+</style>
+
+
+</head>
+<body>
+<center>
+<form action="check_password.py" method="post" id="admin-login">
+    <h2>Enter OTP</h2>
+    <div id="admin-body">
+<i class="fas fa-unlock-alt admin-icons"></i>
+        <input class="input-part" type="text" name="otp" placeholder="OTP" required><br><br>
+        <i class="fas fa-sign-in-alt admin-icons"></i>
+<input class="input-part" id="login" type="submit" value="submit" name="submit" >
+        </div>
+<input id="cancel" type="button" value="cancel" onclick="location.href='user_login.py';">
+</form>
+</center>
+</body>
+</html>

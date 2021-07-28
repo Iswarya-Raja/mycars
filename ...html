@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user registration</title>
+</head>
+<body>
+<center>
+<h3>USER REGISTRATION</h3>
+<form action="#" method="post" autocomplete="off" enctype="multipart/form-data"><br>
+Name:<input type="text" name="name" placeholder="Your Name" required><br><br><br>
+DOB:<input type="date" name="dob" required><br><br><br>
+Contact:<input type="text" name="contact" placeholder="Contact" maxlength="10" required><br><br><br>
+Email:<input type="email" name="email" placeholder="abc@gmail.com" required><br><br><br>
+Address:<textarea cols="30" rows="5" name="address" placeholder="Address" required></textarea><br><br><br>
+City:<select name="city" required><br><br><br>
+<option default>select city</option>
+<option value="Chennai">Chennai</option>
+<option value="Coimbatore">Coimbatore</option>
+<option value="Thiruchi">Thiruchi</option>
+<option value="Madurai">Madurai</option>
+<option value="Tirupur">Tirupur</option>
+<option value="Theni">Theni</option>
+</select><br><br><br>
+State:<select name="state" required><br><br><br>
+<option default>select city</option>
+<option value="Chennai">Chennai</option>
+<option value="Coimbatore">Coimbatore</option>
+<option value="Thiruchi">Thiruchi</option>
+<option value="Madurai">Madurai</option>
+<option value="Tirupur">Tirupur</option>
+<option value="Theni">Theni</option>
+</select><br><br><br>
+Pancard-Id:<input type="text" name="panno" placeholder="Pan-No" maxlength="15" required><br><br><br>
+Purpose:<br>
+    <input type="checkbox" name="purpose" value="Buy" required>Buy<br>
+    <input type="checkbox" name="purpose" value="Sale" required>Sale<br><br><br>
+Car-Model:<input type="text" name="carmodel" placeholder="eg:swift" required><br><br><br>
+Model-year:<input type="text" name="modelyear" maxlength="4" placeholder="eg:2010" required><br><br><br>
+Car-Color:<input type="text" name="carcolor" placeholder="eg:Red" required><br><br><br>
+Price-Expected:<input type="text" name="price" placeholder="eg:Rs.1Lk" required><br><br><br>
+Car-Image:<input type="file" name="carimage" required><br><br><br>
+User-Photo:<input type="file" name="userphoto" required><br><br><br>
+Password <input type="password" name="pwd1" id="pwd1" placeholder="your Password" required><br><br>
+Retype Password <input type="password" name="pwd2" id="pwd2" placeholder="Retype Password" onchange="pwdcheck();" required><br><br>
+<input type="submit" name="sub" value="Register">
+<input type="button" value="cancel" onclick="location.href='user_login.py';">
+</form>
+</center>
+
+</body>
+</html>
+
+
+<center>
+<h2>Admin Login</h2>
+<form action="#" method="post" autocomplete="off">
+Admin-Id:<input type="text" name="username" placeholder="username" required autocomplete="off"><br><br>
+Password:<input type="password" name="password" placeholder="Password" required><br><br>
+<input type="submit" name="sub" value="Login">
+<input type="button" value="Cancel" onclick="location.href='index.html';">
+</form>
+</center>
+
+
+
+<center>
+
+<h2>USER LOGIN</h2><br>
+
+<form action="#" method="post" autocomplete="off">
+		   Email-Id<input type="email" name="email" placeholder="email-id" autocomplete="off" required><br><br>
+		   Password<input type="password" name="password" placeholder="password" maxlength="7" required><br><br>
+		   Click Here <a href="forget_password.html" style="color:orange;text-decoration:none">Forget Password</a><br><br>
+		   <input type="submit" name="sub" value="Login" onclick="location.href='car_details.py';">
+		  <input type="button" value="Cancel" onclick="location.href='index.html';"><br><br>
+		  New user <a href="user_reg.py" style="color:orange;text-decoration:none"> Register Here</a>
+</form>
+</center>
+
+<center>
+<h2><u>FORGOTTEN PASSWORD</u></h2>
+<form action="forget_password.py" method="post">
+Mail-ID<input type="email" name="email" placeholder="Mail-id" autocomplete="off" required><br><br>
+<input type="submit" value="send OTP" name="sub">
+<input type="button" value="cancel" onclick="location.href='user_login.py';"><br><br>
+Enter Your OTP<input type="text" name="otp" placeholder="OTP"  maxlength="4" autocomplete="off" required>
+<input type="submit" value="submit" name="sub" onclick="location.href='check_password.py';">
+</form>
+</center>
+
+
+
+<center>
+<h2><u>SET NEW PASSWORD</u></h2>
+<form action="#" method="post">
+Mail-ID<input type="email" name="email" placeholder="Mail-id" autocomplete="off" required><br><br>
+New Password <input type="password" name="pwd1" id="pwd1" placeholder=" New Password" maxlength="7" required><br><br>
+Retype Password <input type="password" name="pwd2" id="pwd2" placeholder="Retype Password" maxlength="7" onchange="pwdcheck();" required><br><br>
+<span id="display"></span>
+<input type="submit" value="Submit" name="sub" onclick="location.href='user_login.py'">
+<input type="button" value="Cancel" onclick="location.href='user_login.py';"><br><br><br>
+</form>
+</center>
+
+
+<center>
+<h2>EMPLOYEE LOGIN</h2><br>
+
+<form action="#" method="post" autocomplete="off">
+		   Email-Id<input type="email" name="email" placeholder="email-id"  autocomplete="off" required><br><br>
+		   Emp-Id<input type="password" name="empid" placeholder="Emp-Id"  required><br><br>
+		   <input type="submit" name="sub" value="Login" onclick="location.href='emp_profile.py';">
+		  <input type="button" value="Cancel" onclick="location.href='index.html';"><br><br>
+</form>
+</center>
+
+
+
+
+q="""select name,dob,contact,email,purpose,carmodel,modelyear,carcolor,priceexpected,carimage from user_table"""
+cur.execute(q)
+r=cur.fetchone()
+
+q1="""insert into forward_table(name,dob,contact,email,purpose,carmodel,modelyear,carcolor,priceexpected,carimage)
+values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')
+"""
+
+
+
+<form id="add-employee-form" action="#" method="post" autocomplete="off" enctype="multipart/form- data" >
+  <h1>ADD EMPLOYEE DETAILS</h1>
+  <div id="hr-line"></div>
+  <input type="hidden" id="eid" value="%s">
+  <h3> Name</h3>
+  <input class="input-field" type="text" name="uname" placeholder="Your Name" required><br><br>
+  <h3> DOB</h3>
+  <input class="input-field" type="date" name="dob" required><br><br>
+  <h3>Contact</h3>
+  <input class="input-field" type="text" name="contact" placeholder="contact" maxlength="10" required><br><br>
+  <h3>Email ID</h3>
+  <input class="input-field" type="email" name="email" placeholder="abc@gmail.com" required>
+  <h3>Address</h3>
+  <textarea class="input-field" cols="30" rows="5" name="address" placeholder="Address" required></textarea>
+  <h3>Department</h3>
+  <select class="input-field" name="department" id="dept" onchange="document.getElementById('drno').value=this.value+document.getElementById('eid').value;">
+    <option default>Department</option>
+    <option value="SAL">SALES</option>
+    <option value="SER">SERVICE</option>
+    <option value="ACC">ACCOUNTS</option>
+    <option value="MNGMT">MANAGEMENT</option>
+  </select><br><br>
+  <h3>Emp-ID:</h3>
+  <input class="input-field" type="text" name="empid" placeholder="Enter your Emp Id"id="drno" readonly>
+  <!--   <br>*Your EMP-ID<br><br>  -->
+  <h3>Year of Joining</h3>
+  <input class="input-field" type="text" name="sy" id="sy" placeholder="yyyy" maxlength="4" required><br><br>
+  <h3>Salary</h3>
+  <input class="input-field" type="text" name="salary" placeholder="Rs.." maxlength="10" required><br><br>
+  <h3>Profile</h3>
+  <input class="profile-field" type="file" name="profile" required>
+  <div id="hr-line"></div>
+  <div id="btn">
+    <input class="btn-field" type="submit" name="sub" value="submit">
+    <input class="btn-field" type="button" value="cancel" onclick="location.href='addnew_emp.py';">
+  </div>
+</form>
+
+
+
+<center><h3>UPDATE EMPLOYEE DETAILS</h3><br>
+<form action="#" method="post" autocomplete="off" enctype="multipart/form-data"><br>
+Name:<input type="text" name="name" placeholder="Your Name" required><br><br>
+DOB:<input type="date" name="dob" placeholder="Dob" required><br><br>
+Contact:<input type="text" name="contact" placeholder="contact" maxlength="10" required><br><br>
+Email:<input type="email" name="email" placeholder="abc@gmail.com" required><br><br>
+Address:<textarea cols="30" rows="5" name="address" placeholder="Address" required></textarea><br><br>
+Department:<select name="department" id="dept"><br><br>
+<option default>Department</option>
+<option value="SAL">SALES</option>
+<option value="SER">SERVICE</option>
+<option value="ACC">ACCOUNTS</option>
+<option value="MNG">MANAGEMENT</option>
+</select><br><br>
+Year of Joining:<input type="text" name="yoj" placeholder="yyyy" maxlength="4" required><br><br>
+Salary:<input type="text" name="salary" placeholder="Rs.." maxlength="10" required><br><br>
+profile:<input type="file" name="profile" required><br><br>
+<input type="submit" name="sub" value="submit">
+<input type="button" value="cancel" onclick="location.href='addnew_emp.py';">
+</form>
+</center>
+
+
+
+
+<form id="user-form" action="#" method="post" autocomplete="off" enctype="multipart/form-data"><br>
+<h1>USER REGISTRATION</h1>
+<div id="hr-line"></div>
+<h3>Name</h3>
+    <input class="input-field" type="text" name="name" placeholder="Your Name" required><br><br><br>
+DOB:<input class="input-field" type="date" name="dob" required><br><br><br>
+Contact:<input class="input-field" type="text" name="contact" placeholder="Contact" maxlength="10" required><br><br><br>
+Email:<input class="input-field" type="email" name="email" placeholder="abc@gmail.com" required><br><br><br>
+Address:<textarea class="input-field" cols="30" rows="5" name="address" placeholder="D/No,Street Name.." required></textarea><br><br><br>
+City:<select class="input-field" name="city" required><br><br><br>
+<option default>select city</option>
+<option value="Chennai">Chennai</option>
+<option value="Coimbatore">Coimbatore</option>
+<option value="Thiruchi">Thiruchi</option>
+<option value="Madurai">Madurai</option>
+<option value="Tirupur">Tirupur</option>
+<option value="Theni">Theni</option>
+</select><br><br><br>
+State:<select class="input-field" name="state" required><br><br><br>
+<option default>select city</option>
+<option value="Chennai">Chennai</option>
+<option value="Coimbatore">Coimbatore</option>
+<option value="Thiruchi">Thiruchi</option>
+<option value="Madurai">Madurai</option>
+<option value="Tirupur">Tirupur</option>
+<option value="Theni">Theni</option>
+</select><br><br><br>
+Pancard-Id:<input class="input-field" type="text" name="panno" placeholder="Pan-No" maxlength="10" required><br><br><br>
+Purpose:<br>
+<p class="check-input"><input class="input-field" type="checkbox" name="purpose" value="Buy">Buy<br>
+<p class="check-input"><input class="input-field" type="checkbox" name="purpose" value="Sale">Sale<br>
+      <center><h4>*If sale please provide the below details</h4></center>
+Car-Model:<input class="input-field" type="text" name="carmodel" placeholder="eg:swift"><br><br><br>
+Model-year:<input class="input-field" type="text" name="modelyear" maxlength="4" placeholder="eg:2010"><br><br><br>
+Car-Color:<input class="input-field" type="text" name="carcolor" placeholder="eg:Red"><br><br><br>
+Price-Expected:<input class="input-field" type="text" name="price" placeholder="eg:Rs.1Lk"><br><br><br>
+Car-Image:<input class="input-field" type="file" name="carimage"><br><br><br>
+Password <input class="input-field" type="password" name="pwd1" id="pwd1" placeholder="your Password" required><br><br>
+Retype Password <input class="input-field" type="password" name="pwd2" id="pwd2" placeholder="Retype Password" onchange="pwdcheck();" required><br><br>
+<span id="display"></span>
+<div id="hr-line"></div>
+  <div id="btn">
+<input class="btn-field" type="submit" name="sub" value="Register">
+<input class="btn-field" type="button" value="cancel" onclick="location.href='user_login.py';">
+  </div>
+</form>
+
+
+
+ <form id="user-form" action="#" method="post" autocomplete="off" enctype="multipart/form- data">
+  <h1>USER REGISTRATION</h1>
+    <div id="hr-line"></div>
+    <h3>Name</h3>
+    <input  type="text" name="name" placeholder="Your Name" required>
+    <h3>DOB</h3>
+    <input class="input-field" type="date" name="dob" required>
+    <h3>Contact</h3>
+    <input class="input-field" type="text" name="contact" placeholder="Contact" maxlength="10" required>
+    <h3>Email</h3>
+    <input class="input-field"type="email" name="email" placeholder="abc@gmail.com" required>
+    <h3>Address</h3>
+    <textarea class="input-field"cols="30" rows="5" name="address" placeholder="D/No,Street Name.." required></textarea>
+    <h3>State</h3>
+   <select class="input-field" name="state" required><br><br><br>
+      <option default>select State</option>
+      <option value="TamilNadu">TamilNadu</option>
+      <option value="Telangana">Telangana</option>
+      <option value="Kerala">Kerala</option>
+      <option value="Maharashtra">Maharashtra</option>
+      <option value="U.P">U.P</option>
+      <option value="Rajashtan">Rajashtan</option>
+    </select><br>
+    <h3>City</h3>
+    <input class="input-field" type="text" name="city" placeholder="Your City" required>
+    <h3>Pancard-Id</h3>
+    <input class="input-field"type="text" name="panno" placeholder="Pan-No" maxlength="15" required><br>
+    <h3>Purpose</h3>
+    <p class="check-input"><input type="checkbox" name="purpose" value="Buy">Buy</p>
+      <p class="check-input"><input type="checkbox" name="purpose" value="Sale">Sale</p>
+      <center><h4>*If sale please provide the below details</h4></center>
+    <h3>Car-Model</h3>
+    <input class="input-field" type="text" name="carmodel" placeholder="eg:swift">
+    <h3>Model-year</h3>
+    <input class="input-field" type="text" name="modelyear" maxlength="4" placeholder="eg:2010">
+    <h3>Car-Color</h3>
+  <input class="input-field" type="text" name="carcolor" id="color" placeholder="Eg:Red">
+    <h3>Price-Expected</h3>
+    <input class="input-field" type="text" name="price" placeholder="eg:Rs.1Lk">
+    <h3>Car-Image</h3>
+    <input class="profile-field" type="file" name="profile">
+    <h3>Password</h3>
+    <input class="input-field" type="password" name="pwd1" id="pwd1" placeholder="Enter Password" required>
+    <h3>Retype Password</h3>
+    <input class="input-field"type="password" name="pwd2" id="pwd2" placeholder="Retype Password" onchange="pwdcheck();" required>
+    <span id="display"></span>
+    <div id="hr-line"></div>
+  <div id="btn">
+    <input class="btn-field" type="submit" name="sub" value="Register">
+    <input class="btn-field" type="button" value="cancel" onclick="location.href='user_login.py';">
+    </div>
+    </form>
+
+
+
+
+
+
+<center>
+<h2>Admin Login</h2>
+<form action="#" method="post" autocomplete="off">
+Admin-Id:<input type="text" name="username" placeholder="username" required autocomplete="off"><br><br>
+Password:<input type="password" name="password" placeholder="Password" required><br><br>
+<input type="submit" name="sub" value="Login">
+<input type="button" value="Cancel" onclick="location.href='index.html';">
+</form>
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
